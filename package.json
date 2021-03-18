@@ -1,0 +1,23 @@
+{
+  "name": "browser-technologies-2021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BVictorB/browser-technologies-2021.git"
+  },
+  "author": "Victor Boucher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BVictorB/browser-technologies-2021/issues"
+  },
+  "homepage": "https://github.com/BVictorB/browser-technologies-2021#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}
