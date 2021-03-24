@@ -2,12 +2,16 @@ const router = require('express').Router()
 
 const
   home = require('./routes/home'),
-  login = require('./routes/login'),
-  register = require('./routes/register')
+  createpoll = require('./routes/createpoll'),
+  poll = require('./routes/poll'),
+  polls = require('./routes/polls')
 
 router
   .get('/', home)
-  .get('/login', login)
-  .get('/register', register)
+  .get('/createpoll', createpoll)
+  .post('/createpoll', createpoll)
+  .get('/poll/:id', poll)
+  .post('/poll/:id', poll)
+  .get('/polls', polls)
 
 module.exports = router

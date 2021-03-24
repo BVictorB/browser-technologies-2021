@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head'); %>
+
+<body>
+  <%- include('../partials/header'); %>
+
+  <main>
+    <h1>Create poll</h1>
+    <form action="/createpoll" method="POST">
+      <label>
+        Question
+        <input type="text" name="question" />
+      </label>
+      <label>
+        Answer 1
+        <input type="text" name="answers" />
+      </label>
+      <label>
+        Answer 2
+        <input type="text" name="answers" />
+      </label>
+      <label>
+        Answer 3
+        <input type="text" name="answers" />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+
+    <%- include('../partials/footer'); %>
+</body>
+</html>

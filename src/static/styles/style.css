@@ -3,3 +3,38 @@
   margin: 0;
   padding: 0;
 }
+
+header, main, footer {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 16px 24px;
+}
+
+label {
+  display: block;
+}
+
+input[type="text"] {
+  display: block;
+}
+
+.poll-results p {
+  display: inline;
+}
+
+.poll-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.poll-block {
+  display: block;
+  background: black;
+  border-radius: 16px;
+  width: 150px;
+  height: 60px;
+  text-align: center;
+  color: white;
+  margin: 12px;
+}
