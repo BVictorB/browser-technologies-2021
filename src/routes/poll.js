@@ -1,14 +1,20 @@
+const ObjectId = require('mongoose').Types.ObjectId
 const Poll = require('../models/poll')
 
 const poll = async (req, res) => {
   const cookies = req.cookies.votes
   const id = req.params.id
 
+  if (!ObjectId.isValid(id)) {
+    res.render('pages/poll')
+    return
+  }
+
   if (req.method === 'GET') {
     const poll = await Poll.findOne({ _id: id })
 
     if (cookies && cookies.includes(id)) {
-      res.render('pages/poll', { poll, voted: true })
+      res.redirect(`/result/${id}`)
       return
     }
 
@@ -27,7 +33,7 @@ const poll = async (req, res) => {
     )
 
     res.cookie('votes', updateCookies)
-    res.redirect(`/poll/${id}`)
+    res.redirect(`/result/${id}`)
   }
 }
 

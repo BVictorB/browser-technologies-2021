@@ -1,6 +1,8 @@
-const mongoose = require('mongoose')
+const 
+  mongoose = require('mongoose'),
+  Schema = mongoose.Schema
 
-const pollSchema = new mongoose.Schema({
+const pollSchema = new Schema({
   question: {
     type: String,
     required: true
@@ -8,6 +10,9 @@ const pollSchema = new mongoose.Schema({
   answers: {
     type: Array,
     required: true
+  },
+  subscriptions: {
+    type: Array
   }
 })
 

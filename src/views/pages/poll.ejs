@@ -7,7 +7,7 @@
   <%- include('../partials/header'); %>
 
   <main>
-    <% if (locals.poll && !locals.voted) { %>
+    <% if (locals.poll) { %>
       <h1><%= poll.question %></h1>
       <form action="/poll/<%= poll._id %>" method="POST">
 
@@ -20,20 +20,8 @@
 
         <button type="submit">Submit</button>
       </form>
-    <% } %>
-
-    <% if (locals.poll && locals.voted) { %>
-      <h1><%= poll.question %></h1>
-      <section class="poll-results">
-        <% poll.answers.forEach((answer, index) => { %>
-          <div>
-            <p class="<%= `answer-${index}` %>"><%= answer.answer %></p>:
-            <p class="<%= `votes-${index}` %>"><%= answer.votes %></p>
-          </div> 
-        <% }) %>
-      </section>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>
-      <script src="/scripts/socket.js"></script>
+    <% } else { %>
+      <p>This poll could not be found</p>  
     <% } %>
   </main>
 
