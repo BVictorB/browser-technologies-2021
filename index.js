@@ -3,14 +3,12 @@ require('dotenv').config();
 const
   express = require('express'),
   mongoose = require('mongoose'),
-  session = require('express-session'),
   socket = require('socket.io'),
   webPush = require('web-push'),
   cookieParser = require('cookie-parser'),
   app = express(),
   server = require('http').createServer(app),
-  router = require('./src/router'),
-  checkNotification = require('./src/utils/checkNotification')
+  router = require('./src/router')
 
 mongoose.connect(process.env.DB_URL, {
   useUnifiedTopology: true,
@@ -40,14 +38,6 @@ io.on('connection', socket => {
   socket.on('poll', data => poll(data, socket))
 })
 
-// webPush.setVapidDetails('mailto:replacethislater@test.com', process.env.PUBLIC_VAPID, process.env.PRIVATE_VAPID)
-
-// let subscriptions = []
-
-// setInterval(_ => {
-//   subscriptions.forEach(subscription => {
-//     checkNotification(subscription)
-//   })
-// }, 10000)
+webPush.setVapidDetails('mailto:replacethislater@test.com', process.env.PUBLIC_VAPID, process.env.PRIVATE_VAPID)
 
 app.use(router)
