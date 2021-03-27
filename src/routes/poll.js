@@ -27,13 +27,11 @@ const poll = async (req, res) => {
     Poll.findOneAndUpdate(
       { _id: id },
       { $inc: { [vote] : 1 }},
-      (err, poll) => {
-        console.log(poll)
+      err => {
+        res.cookie('votes', updateCookies)
+        res.redirect(`/result/${id}`)
       }
     )
-
-    res.cookie('votes', updateCookies)
-    res.redirect(`/result/${id}`)
   }
 }
 

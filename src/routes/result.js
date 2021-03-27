@@ -1,12 +1,27 @@
-const Poll = require('../models/poll')
+const 
+  Poll = require('../models/poll'),
+  roundNum = require('../utils/roundNum')
 
 const result = async (req, res) => {
   const 
     id = req.params.id,
-    poll = await Poll.findOne({ _id: id }),
+    { answers, _id, question } = await Poll.findOne({ _id: id }),
     publicVapidKey = process.env.PUBLIC_VAPID
 
-  res.render('pages/result', { poll, publicVapidKey })
+  const totalVotes = answers.reduce((prev, answer) => prev + answer.votes, 0)
+  const results = answers.map(answer => ({
+    ...answer,
+    percentage: roundNum(answer.votes/totalVotes * 100, 1),
+  }))
+
+  const data = {
+    _id,
+    question,
+    answers: results,
+    totalVotes
+  }
+
+  res.render('pages/result', { data, publicVapidKey })
 }
 
 module.exports = result

@@ -16,11 +16,7 @@ const createpoll = (req, res) => {
     poll.answers = answers
   
     poll.save((err, poll) => {
-      if (err) {
-        console.log(err)
-      } else {
-        res.redirect(`poll/${poll._id}`)
-      }
+      !err && res.redirect(`poll/${poll._id}`)
     })
   }
 }

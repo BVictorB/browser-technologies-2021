@@ -1,8 +1,18 @@
 self.addEventListener('push', e => {
-  const data = e.data.json()
+  const { title, content, url } = e.data.json()
 
-  self.registration.showNotification(data.title, {
-    body: data.content,
-    icon: data.icon
+  self.registration.showNotification(title, {
+    body: content,
+    data: {
+      url: url
+    }
+    // icon: data.icon,
   })
+})
+
+self.addEventListener('notificationclick', e => {
+  e.notification.close()
+  e.waitUntil(
+    clients.openWindow(e.notification.data.url)
+  )
 })

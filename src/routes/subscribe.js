@@ -10,8 +10,6 @@ const subscribe = async (req, res) => {
       console.log(poll)
     }
   )
-
-  // res.status(201).json({})
 }
 
 module.exports = subscribe

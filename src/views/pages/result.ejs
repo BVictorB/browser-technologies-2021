@@ -7,25 +7,35 @@
   <%- include('../partials/header'); %>
 
   <main>
-    <% if (locals.poll) { %>
-      <h1><%= poll.question %></h1>
+    <% if (locals.data) { %>
+      <h1><%= data.question %> <span id="liveData"></span></h1>
       <section class="poll-results">
-        <% poll.answers.forEach((answer, index) => { %>
+        <% data.answers.forEach((answer, index) => { %>
           <div>
-            <p class="<%= `answer-${index}` %>"><%= answer.answer %></p>:
-            <p class="<%= `votes-${index}` %>"><%= answer.votes %></p>
+            <p class="<%= `answer-${index}` %>"><%= answer.answer %>:</p>
+            <p class="<%= `votes-${index}` %>"><%= answer.votes %> <%= answer.votes === 1 ? 'vote' : 'votes' %></p>
           </div> 
+          <svg class="poll-bar" width="400" height="24">
+            <rect class="<%= `bar-${index}` %>" width="<%= answer.percentage %>%" height="24" fill="black" />
+            <text class="<%= `text-${index}` %>" text-anchor="end" x="<%= answer.percentage - 2 %>%" y="16" fill="white"><%= answer.percentage %>%</text>
+          </svg>
         <% }) %>
       </section>
 
-      <p id="errorMsg">Oops... something went wrong</p>
-      <button id="subscribe">Subscribe</button>
+      <form id="refreshButton" action="">
+        <button type="submit">Refresh</button>
+      </form>
+      <p>Share this poll</p>
+      <input id="copyInput" type="text" value="http://localhost:4000/poll/<%= data._id %>" readonly>
+      <p id="subscribeText">Get notifications about this poll</p>
+      <button id="subscribeButton">Subscribe</button>
       <script>
         const vapidKey = <%- JSON.stringify(publicVapidKey) %>
       </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>
       <script src="/scripts/socket.js"></script>
       <script src="/scripts/subscribe.js"></script>
+      <script src="/scripts/copyToClipboard.js"></script>
     <% } %>
   </main>
 

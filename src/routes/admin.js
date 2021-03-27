@@ -1,6 +1,7 @@
-const Poll = require('../models/poll')
-const sendNotification = require('../utils/sendNotification')
-const roundNum = require('../utils/roundNum')
+const 
+  Poll = require('../models/poll'),
+  sendNotification = require('../utils/sendNotification'),
+  roundNum = require('../utils/roundNum')
 
 const admin = async (req, res) => {
   if (req.method === 'GET') {
@@ -8,7 +9,6 @@ const admin = async (req, res) => {
     res.render('pages/admin', { polls })
   } else if (req.method === 'POST') {
     const poll = await Poll.findOne({ _id: req.body.id })
-    const question = poll.question
 
     const totalVotes = poll.answers.reduce((prev, answer) => prev + answer.votes, 0)
     const results = poll.answers.map(answer => ({
@@ -18,7 +18,7 @@ const admin = async (req, res) => {
     const winner = results.reduce((prev, result) => prev.votes > result.votes ? prev : result)
 
     poll.subscriptions.forEach(subscription => {
-      sendNotification(subscription, question, winner)
+      sendNotification(subscription, poll, winner)
     })
   }
 }

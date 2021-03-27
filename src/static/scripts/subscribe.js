@@ -1,6 +1,6 @@
 const 
-  btn = document.querySelector('#subscribe'),
-  errorMsg = document.querySelector('#errorMsg'),
+  btn = document.querySelector('#subscribeButton'),
+  text = document.querySelector('#subscribeText'),
   pollId = window.location.pathname.split('/').pop()
 
 const urlBase64ToUint8Array = base64String => {
@@ -42,6 +42,7 @@ const subscribe = async _ => {
 }
 
 if ('serviceWorker' in navigator) {
+  btn.style.display = 'block'
+  text.style.display = 'block'
   btn.addEventListener('click', subscribe)
-  errorMsg.remove()
 }
