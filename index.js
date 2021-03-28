@@ -8,7 +8,10 @@ const
   cookieParser = require('cookie-parser'),
   app = express(),
   server = require('http').createServer(app),
-  router = require('./src/router')
+  io = socket(server),
+  router = require('./src/router'),
+  poll = require('./src/sockets/poll'),
+  checkPolls = require('./src/utils/checkPolls')
 
 mongoose.connect(process.env.DB_URL, {
   useUnifiedTopology: true,
@@ -31,13 +34,12 @@ app
 
 server.listen(4000)
 
-const io = socket(server)
-const poll = require('./src/sockets/poll')
-
 io.on('connection', socket => {
   socket.on('poll', data => poll(data, socket))
 })
 
-// webPush.setVapidDetails('mailto:replacethislater@test.com', process.env.PUBLIC_VAPID, process.env.PRIVATE_VAPID)
+setInterval(checkPolls, 60000)
+
+webPush.setVapidDetails('mailto:replacethislater@test.com', process.env.PUBLIC_VAPID, process.env.PRIVATE_VAPID)
 
 app.use(router)

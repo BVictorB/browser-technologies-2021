@@ -10,15 +10,6 @@ const home = async (req, res) => {
     } else {
         res.render('pages/index', { recent })
     }
-
-    const openPolls = await Poll.find({ closed: false })
-    openPolls.forEach(openPoll => {
-        if (new Date() >= openPoll.closingtime) {
-            console.log('close this poll')
-        } else {
-            console.log('leave this poll open')
-        }
-    })
 }
 
 module.exports = home
