@@ -5,7 +5,7 @@ const
 const result = async (req, res) => {
   const
     id = req.params.id,
-    { answers, _id, question, closingtime } = await Poll.findOne({ _id: id }),
+    { answers, _id, question, closingtime, closed } = await Poll.findOne({ _id: id }),
     publicVapidKey = process.env.PUBLIC_VAPID
 
   const totalVotes = answers.reduce((prev, answer) => prev + answer.votes, 0)
@@ -19,7 +19,8 @@ const result = async (req, res) => {
     question,
     answers: results,
     totalVotes,
-    closingtime
+    closingtime,
+    closed
   }
 
   res.render('pages/result', { data, publicVapidKey })

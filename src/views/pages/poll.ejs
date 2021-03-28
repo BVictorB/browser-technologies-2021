@@ -10,14 +10,12 @@
     <% if (locals.poll) { %>
       <h1><%= poll.question %></h1>
       <form action="/poll/<%= poll._id %>" method="POST">
-
         <% poll.answers.forEach((answer, index) => { %>
           <label>
             <input type="radio" name="answer" value="<%= index %>"/>
             <%= answer.answer %>
           </label>
         <% }) %>
-
         <button type="submit">Submit</button>
       </form>
     <% } else { %>

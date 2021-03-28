@@ -37,7 +37,7 @@ io.on('connection', socket => {
   socket.on('poll', data => poll(data, socket))
 })
 
-setTimeout(checkPolls, 60000)
+setInterval(checkPolls, 60000)
 
 webPush.setVapidDetails('mailto:replacethislater@test.com', process.env.PUBLIC_VAPID, process.env.PRIVATE_VAPID)
 

@@ -10,29 +10,29 @@
     <h1>home</h1>
     <h2>Voted polls</h2>
     <% if (locals.voted) { %>
-    <section class="poll-container">
+      <section class="poll-container">
         <% voted.forEach(vote => { %>
-        <a class="poll-block" href="/poll/<%= vote._id %>">
+          <a class="poll-block" href="/poll/<%= vote._id %>">
             <%= vote.question %>
-        </a>
+          </a>
         <% }) %>
-    </section>
+      </section>
     <% } else { %>
-    <p>No polls</p>
+      <p>No polls</p>
     <% } %>
     <h2>Recently closed</h2>
     <p>Recently closed polls...</p>
     <h2>Recent polls</h2>
     <% if (locals.recent) { %>
-    <section class="poll-container">
+      <section class="poll-container">
         <% recent.forEach(recentPoll => { %>
-        <a class="poll-block" href="/poll/<%= recentPoll._id %>">
+          <a class="poll-block" href="/poll/<%= recentPoll._id %>">
             <%= recentPoll.question %>
-        </a>
+          </a>
         <% }) %>
-    </section>
+      </section>
     <% } else { %>
-    <p>No polls</p>
+      <p>No polls</p>
     <% } %>
   </main>
 

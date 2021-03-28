@@ -9,7 +9,11 @@
   <main>
     <% if (locals.data) { %>
       <h1><%= data.question %> <span id="liveData"></span></h1>
-      <h2>Closes <%= data.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${data.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= data.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %></h2>
+      <% if (data.closed) { %>
+        <h2 id="closeText">This poll is closed.</h2>
+      <% } else { %>
+        <h2 id="closeText">Closes <%= data.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${data.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= data.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %>.</h2>
+      <% } %>
       <section class="poll-results">
         <% data.answers.forEach((answer, index) => { %>
           <div>
@@ -22,20 +26,23 @@
           </svg>
         <% }) %>
       </section>
-
-      <form id="refreshButton" action="">
-        <button type="submit">Refresh</button>
-      </form>
+      <% if (!data.closed) { %>
+        <form id="refreshButton" action="">
+          <button type="submit">Refresh</button>
+        </form>
+      <% } %>
       <p>Share this poll</p>
       <input id="copyInput" type="text" value="http://localhost:4000/poll/<%= data._id %>" readonly>
-      <p id="subscribeText">Get notifications about this poll</p>
-      <button id="subscribeButton">Subscribe</button>
-      <script>
-        const vapidKey = <%- JSON.stringify(publicVapidKey) %>
-      </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>
-      <script src="/scripts/socket.js"></script>
-      <script src="/scripts/subscribe.js"></script>
+      <% if (!data.closed) { %>
+        <p id="subscribeText">Get notifications about this poll</p>
+        <button id="subscribeButton">Subscribe</button>
+        <script>
+          const vapidKey = <%- JSON.stringify(publicVapidKey) %>
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>
+        <script src="/scripts/socket.js"></script>
+        <script src="/scripts/subscribe.js"></script>
+      <% } %>
       <script src="/scripts/copyToClipboard.js"></script>
     <% } %>
   </main>

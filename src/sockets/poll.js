@@ -6,7 +6,7 @@ const poll = async (data, socket) => {
   const poll = await Poll.watch({ _id: data.id })
 
   poll.on('change', async () => {
-    const { answers, _id, question } = await Poll.findOne({ _id: data.id })
+    const { answers, _id, question, closed } = await Poll.findOne({ _id: data.id })
     const totalVotes = answers.reduce((prev, answer) => prev + answer.votes, 0)
     const results = answers.map(answer => ({
       ...answer,
@@ -17,7 +17,8 @@ const poll = async (data, socket) => {
       _id,
       question,
       answers: results,
-      totalVotes
+      totalVotes,
+      closed
     }
     socket.emit('poll', pollData)
   })

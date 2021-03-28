@@ -20,12 +20,8 @@ const checkPolls = async () => {
       const winner = results.reduce((prev, result) => prev.votes > result.votes ? prev : result)
 
       openPoll.subscriptions.forEach(subscription => {
-          sendNotification(subscription, openPoll, winner)
+        sendNotification(subscription, openPoll, winner)
       })
-    } else {
-      console.log(`Dont close poll ${openPoll.question}`)
-      console.log(openPoll.closingtime)
-      console.log(new Date())
     }
   })
 }

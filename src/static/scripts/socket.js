@@ -7,6 +7,13 @@ const id = window.location.pathname.split('/').pop()
 socket.emit('poll', { id })
 
 socket.on('poll', (data) => {
+  if (data.closed) {
+    document.querySelector('#liveData').remove()
+    document.querySelector('#closeText').innerText = 'This poll is closed.'
+    document.querySelector('#subscribeButton').remove()
+    document.querySelector('#subscribeText').remove()
+  }
+
   data.answers.forEach((answerData, index) => {
     const 
       { answer, votes, percentage } = answerData,

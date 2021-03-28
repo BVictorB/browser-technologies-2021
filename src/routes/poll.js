@@ -14,7 +14,7 @@ const poll = async (req, res) => {
   if (req.method === 'GET') {
     const poll = await Poll.findOne({ _id: id })
 
-    if (cookies && cookies.includes(id)) {
+    if (cookies && cookies.includes(id) || poll.closed) {
       res.redirect(`/result/${id}`)
       return
     }
