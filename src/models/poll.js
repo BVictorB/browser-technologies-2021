@@ -13,6 +13,17 @@ const pollSchema = new Schema({
   },
   subscriptions: {
     type: Array
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  closingtime: {
+    type: Date
+  },
+  closed: {
+    type: Boolean,
+    default: false
   }
 })
 

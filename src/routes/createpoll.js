@@ -4,6 +4,9 @@ const createpoll = (req, res) => {
   if (req.method === 'GET') {
     res.render('pages/createpoll')
   } else if (req.method === 'POST') {
+    const { date, time, question } = req.body
+    const timestamp = new Date(`${date} ${time}`).getTime()
+
     const poll = new Poll()
     const answers = req.body.answers.map(answer => {
       return {
@@ -12,8 +15,9 @@ const createpoll = (req, res) => {
       }
     })
     
-    poll.question = req.body.question
+    poll.question = question
     poll.answers = answers
+    poll.closingtime = timestamp
   
     poll.save((err, poll) => {
       !err && res.redirect(`poll/${poll._id}`)
