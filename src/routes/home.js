@@ -6,7 +6,7 @@ const home = async (req, res) => {
     recent = await Poll.find({}).sort({date:-1}).limit(3)
 
   if (cookies) {
-    const voted = await Poll.find({ _id: { $in: cookies } }).sort({date:-1})
+    const voted = await Poll.find({ _id: { $in: cookies } }).sort({date:-1}).limit(3)
     res.render('pages/index', { voted, recent })
   } else {
     res.render('pages/index', { recent })
