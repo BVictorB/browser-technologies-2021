@@ -7,7 +7,8 @@ const
   polls = require('./routes/polls'),
   result = require('./routes/result'),
   subscribe = require('./routes/subscribe'),
-  admin = require('./routes/admin')
+  admin = require('./routes/admin'),
+  voted = require('./routes/voted')
 
 router
   .get('/', home)
@@ -21,5 +22,6 @@ router
   .post('/subscribe', subscribe)
   .get('/admin', admin)
   .post('/admin', admin)
+  .get('/voted', voted)
 
 module.exports = router
