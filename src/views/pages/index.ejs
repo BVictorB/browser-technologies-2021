@@ -1,41 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/open'); %>
+<%- include('../partials/header'); %>
 
-<%- include('../partials/head'); %>
-
-<body>
-  <%- include('../partials/header'); %>
-
-  <main>
-    <h1>home</h1>
+<main>
+  <h1>home</h1>
+  <% if (locals.voted && locals.voted.length) { %>
     <h2>Voted polls</h2>
-    <% if (locals.voted) { %>
-      <section class="poll-container">
-        <% voted.forEach(vote => { %>
-          <a class="poll-block" href="/poll/<%= vote._id %>">
-            <%= vote.question %>
-          </a>
-        <% }) %>
-      </section>
-    <% } else { %>
-      <p>No polls</p>
-    <% } %>
-    <h2>Recently closed</h2>
-    <p>Recently closed polls...</p>
+    <section class="poll-container">
+      <% voted.forEach(vote => { %>
+        <a class="poll-block" href="/poll/<%= vote._id %>">
+          <%= vote.question %>
+        </a>
+      <% }) %>
+    </section>
+  <% } %>
+  <% if (locals.recent && locals.recent.length) { %>
     <h2>Recent polls</h2>
-    <% if (locals.recent) { %>
-      <section class="poll-container">
-        <% recent.forEach(recentPoll => { %>
-          <a class="poll-block" href="/poll/<%= recentPoll._id %>">
-            <%= recentPoll.question %>
-          </a>
-        <% }) %>
-      </section>
-    <% } else { %>
-      <p>No polls</p>
-    <% } %>
-  </main>
+    <section class="poll-container">
+      <% recent.forEach(recentPoll => { %>
+        <a class="poll-block" href="/poll/<%= recentPoll._id %>">
+          <%= recentPoll.question %>
+        </a>
+      <% }) %>
+    </section>
+  <% } %>
+</main>
 
-    <%- include('../partials/footer'); %>
-</body>
-</html>
+<%- include('../partials/close'); %>

@@ -1,12 +1,24 @@
-const Poll = require('../models/poll')
+const 
+  Poll = require('../models/poll'),
+  SavedPoll = require('../models/savedpoll')
 
 const createpoll = (req, res) => {
   if (req.method === 'GET') {
     const cookies = req.cookies.saved
     res.render('pages/createpoll', { cookies })
   } else if (req.method === 'POST') {
-    const { date, time, question, answers } = req.body
+    const { date, time, question, answers, savedID } = req.body
     const timestamp = new Date(`${date} ${time}`).getTime()
+
+    if (savedID) {
+      const cookies = req.cookies.saved
+      const updateCookies = cookies.filter(cookie => cookie.id !== savedID)
+  
+      SavedPoll.deleteOne({ _id: savedID }, err => {
+        err && console.log(err)
+      })
+      res.cookie('saved', updateCookies)
+    }
 
     const poll = new Poll()
     const formattedAnswers = answers.map(answer => {

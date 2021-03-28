@@ -11,7 +11,6 @@ const saved = async (req, res) => {
   }
 
   if (req.method === 'GET') {
-  
     const data = await SavedPoll.findOne({ _id: id })
     res.render('pages/createpoll', { data })
   } else if (req.method === 'POST') {

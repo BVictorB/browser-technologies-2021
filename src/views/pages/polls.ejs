@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<%- include('../partials/head'); %>
-
-<body>
-  <%- include('../partials/header'); %>
+<%- include('../partials/open'); %>
+<%- include('../partials/header'); %>
 
   <main>
     <h1>Polls</h1>
-    <% if (locals.polls) { %>
+    <% if (locals.polls && locals.polls.length) { %>
       <section class="poll-container">
         <% polls.forEach(poll => { %>
           <a class="poll-block" href="/poll/<%= poll._id %>">
@@ -21,6 +16,4 @@
     <% } %>
   </main>
 
-    <%- include('../partials/footer'); %>
-</body>
-</html>
+<%- include('../partials/close'); %>

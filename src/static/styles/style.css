@@ -7,7 +7,7 @@
 
 header, main, footer {
   width: 100%;
-  max-width: 1440px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 16px 24px;
 }
@@ -32,6 +32,13 @@ nav li {
 nav a {
   color: black;
   text-decoration: none;
+  padding: 0 6px;
+  border-radius: 6px;
+}
+
+nav a:focus {
+  outline: none;
+  border: 1px solid #e85d04;
 }
 
 label {
@@ -45,7 +52,7 @@ label:focus-within {
   color: #e85d04;
 }
 
-input[type="text"] {
+input[type="text"], input[type="date"], input[type="time"] {
   width: 200px;
   border: 2px solid black;
   border-radius: 8px;
@@ -56,7 +63,7 @@ input[type="text"] {
   transition: all 200ms ease-in-out;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus {
   outline: none;
   border: 2px solid #e85d04;
 }
@@ -66,6 +73,7 @@ input[type="radio"] {
 }
 
 button {
+  display: block;
   cursor: pointer;
   font-size: 18px;
   border-radius: 8px;
@@ -76,6 +84,7 @@ button {
   font-weight: 600;
   border: 2px solid #e85d04;
   transition: all 200ms ease-in-out;
+  margin: 16px 0;
 }
 
 button:hover, button:focus {
@@ -114,6 +123,16 @@ button:hover, button:focus {
   text-align: center;
   color: white;
   margin: 12px;
+}
+
+#jsCookieMessage {
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 16px;
+  color: white;
+  margin: 16px auto 0;
+  width: 300px;
+  background: #e85d04;
 }
 
 #refreshButton {
@@ -219,6 +238,8 @@ button:hover, button:focus {
 }
 
 .poll-bar {
+  width: 100%;
+  height: 24px;
   border: 2px solid black;
   border-radius: 8px;
 }

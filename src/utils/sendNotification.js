@@ -6,7 +6,7 @@ const checkNotification = async (sub, poll, winner) => {
 
   const payload = JSON.stringify({
     title: `${question} results are in!`,
-    content: `${answer} won with ${votes} votes (${percentage}%)`,
+    content: `${answer} won with ${votes} ${votes > 1 ? 'votes' : 'vote'} (${percentage}%)`,
     url: `http://localhost:4000/result/${_id}`
     // icon: profile.logo
   })
