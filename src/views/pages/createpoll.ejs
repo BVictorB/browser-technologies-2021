@@ -11,19 +11,27 @@
     <form action="/createpoll" method="POST">
       <label>
         Question
-        <input type="text" name="question" />
+        <input type="text" name="question" required/>
       </label>
       <label>
         Answer 1
-        <input type="text" name="answers" />
+        <input type="text" name="answers" required/>
       </label>
       <label>
         Answer 2
-        <input type="text" name="answers" />
+        <input type="text" name="answers" required/>
       </label>
       <label>
         Answer 3
-        <input type="text" name="answers" />
+        <input type="text" name="answers" required/>
+      </label>
+      <label>
+        Closing time
+        <input type="time" name="time" required>
+      </label>
+      <label>
+        Closing date
+        <input type="date" name="date" value="<%= new Date().toISOString().slice(0, 10) %>" required>
       </label>
       <button type="submit">Submit</button>
     </form>

@@ -20,7 +20,20 @@
     <% } else { %>
     <p>No polls</p>
     <% } %>
+    <h2>Recently closed</h2>
+    <p>Recently closed polls...</p>
     <h2>Recent polls</h2>
+    <% if (locals.recent) { %>
+    <section class="poll-container">
+        <% recent.forEach(recentPoll => { %>
+        <a class="poll-block" href="/poll/<%= recentPoll._id %>">
+            <%= recentPoll.question %>
+        </a>
+        <% }) %>
+    </section>
+    <% } else { %>
+    <p>No polls</p>
+    <% } %>
   </main>
 
     <%- include('../partials/footer'); %>
