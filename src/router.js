@@ -3,6 +3,8 @@ const router = require('express').Router()
 const
   home = require('./routes/home'),
   createpoll = require('./routes/createpoll'),
+  savepoll = require('./routes/savepoll'),
+  saved = require('./routes/saved'),
   poll = require('./routes/poll'),
   result = require('./routes/result'),
   polls = require('./routes/polls'),
@@ -13,6 +15,9 @@ router
   .get('/', home)
   .get('/createpoll', createpoll)
   .post('/createpoll', createpoll)
+  .post('/savepoll', savepoll)
+  .get('/saved/:id', saved)
+  .post('/saved/:id', saved)
   .get('/poll/:id', poll)
   .post('/poll/:id', poll)
   .get('/result/:id', result)

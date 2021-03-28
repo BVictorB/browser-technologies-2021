@@ -10,9 +10,9 @@
     <% if (locals.data) { %>
       <h1><%= data.question %> <span id="liveData"></span></h1>
       <% if (data.closed) { %>
-        <h2 id="closeText">This poll is closed.</h2>
+        <h2 id="closeText">This poll is closed</h2>
       <% } else { %>
-        <h2 id="closeText">Closes <%= data.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${data.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= data.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %>.</h2>
+        <h2 id="closeText">Closes <%= data.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${data.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= data.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %></h2>
       <% } %>
       <section class="poll-results">
         <% data.answers.forEach((answer, index) => { %>

@@ -85,6 +85,13 @@ button:hover, button:focus {
   outline: none;
 }
 
+.active-button {
+  background: white;
+  color: #e85d04;
+  border: 2px solid #e85d04;
+  outline: none;
+}
+
 .poll-results {
   margin: 16px 0 24px;
 }

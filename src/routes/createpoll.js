@@ -2,7 +2,8 @@ const Poll = require('../models/poll')
 
 const createpoll = (req, res) => {
   if (req.method === 'GET') {
-    res.render('pages/createpoll')
+    const cookies = req.cookies.saved
+    res.render('pages/createpoll', { cookies })
   } else if (req.method === 'POST') {
     const { date, time, question, answers } = req.body
     const timestamp = new Date(`${date} ${time}`).getTime()

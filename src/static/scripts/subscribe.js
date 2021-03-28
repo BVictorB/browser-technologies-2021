@@ -21,11 +21,13 @@ const urlBase64ToUint8Array = base64String => {
 
 const subscribe = async _ => {
   const register = await navigator.serviceWorker.register('/sw.js')
-
   const subscription = await register.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(vapidKey)
   })
+
+  btn.innerHTML = 'Subscribed!'
+  btn.classList.add('active-button')
 
   await fetch('/subscribe', {
     method: 'POST',
@@ -37,12 +39,12 @@ const subscribe = async _ => {
       id: pollId
     })
   })
-
-  alert('You will now receive notifications.')
 }
 
 if ('serviceWorker' in navigator) {
   btn.style.display = 'block'
   text.style.display = 'block'
-  btn.addEventListener('click', subscribe)
+  if (!btn.classList.contains('active-button')) {
+    btn.addEventListener('click', subscribe)
+  }
 }

@@ -1,5 +1,6 @@
-const ObjectId = require('mongoose').Types.ObjectId
-const Poll = require('../models/poll')
+const 
+  ObjectId = require('mongoose').Types.ObjectId,
+  Poll = require('../models/poll')
 
 const poll = async (req, res) => {
   const 

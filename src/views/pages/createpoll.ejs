@@ -8,33 +8,50 @@
 
   <main>
     <h1>Create poll</h1>
-    <form action="/createpoll" method="POST">
+    <% if (locals.data) { %>
+      <p>Save this url</p>
+      <input id="copyInput" type="text" value="http://localhost:4000/saved/<%= data._id %>" readonly>
+      <script src="/scripts/copyToClipboard.js"></script>
+      <form action="/saved/<%= data._id %>" method="POST">
+        <button type="submit">Remove saved poll</button>
+      </form>
+    <% } %>
+    <form method="POST">
       <label>
         Question
-        <input type="text" name="question" required/>
+        <input type="text" name="question" value="<%= locals.data && data.question %>" required/>
       </label>
       <label>
         Answer 1
-        <input type="text" name="answers" required/>
+        <input type="text" name="answers" value="<%= locals.data && data.answers[0] %>" required/>
       </label>
       <label>
         Answer 2
-        <input type="text" name="answers" required/>
+        <input type="text" name="answers" value="<%= locals.data && data.answers[1] %>" required/>
       </label>
       <label>
         Answer 3
-        <input type="text" name="answers" required/>
+        <input type="text" name="answers" value="<%= locals.data && data.answers[2] %>" required/>
       </label>
       <label>
         Closing time
-        <input type="time" name="time" required>
+        <input type="time" name="time" value="<%= locals.data && data.time %>" required>
       </label>
       <label>
         Closing date
-        <input type="date" name="date" value="<%= new Date().toISOString().slice(0, 10) %>" required>
+        <input type="date" name="date" value="<%= locals.data ? data.date : new Date().toISOString().slice(0, 10)  %>" required>
       </label>
-      <button type="submit">Submit</button>
+      <button formaction="/createpoll" type="submit">Submit</button>
+      <% if (!locals.data) { %>
+        <button formaction="/savepoll" type="submit">Save for later</button>
+      <% } %>
     </form>
+    <% if (locals.cookies && locals.cookies.length) { %>
+      <p>Saved polls:</p>
+      <% cookies.forEach(cookie => { %>
+        <a href="/saved/<%= cookie.id %>"><%= cookie.question %></a>
+      <% }) %>
+    <% } %>
   </main>
 
     <%- include('../partials/footer'); %>
