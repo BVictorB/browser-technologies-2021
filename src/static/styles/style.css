@@ -212,7 +212,7 @@ button:hover, button:focus {
 }
 
 .poll-bar {
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 8px;
 }
 
