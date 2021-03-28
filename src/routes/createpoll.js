@@ -4,11 +4,11 @@ const createpoll = (req, res) => {
   if (req.method === 'GET') {
     res.render('pages/createpoll')
   } else if (req.method === 'POST') {
-    const { date, time, question } = req.body
+    const { date, time, question, answers } = req.body
     const timestamp = new Date(`${date} ${time}`).getTime()
 
     const poll = new Poll()
-    const answers = req.body.answers.map(answer => {
+    const formattedAnswers = answers.map(answer => {
       return {
         answer: answer,
         votes: 0
@@ -16,7 +16,7 @@ const createpoll = (req, res) => {
     })
     
     poll.question = question
-    poll.answers = answers
+    poll.answers = formattedAnswers
     poll.closingtime = timestamp
   
     poll.save((err, poll) => {

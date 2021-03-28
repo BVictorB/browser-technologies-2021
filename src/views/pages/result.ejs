@@ -9,6 +9,7 @@
   <main>
     <% if (locals.data) { %>
       <h1><%= data.question %> <span id="liveData"></span></h1>
+      <h2>Closes <%= data.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${data.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= data.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %></h2>
       <section class="poll-results">
         <% data.answers.forEach((answer, index) => { %>
           <div>

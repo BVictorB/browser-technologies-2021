@@ -8,14 +8,12 @@ socket.emit('poll', { id })
 
 socket.on('poll', (data) => {
   data.answers.forEach((answerData, index) => {
-    const { answer, votes, percentage } = answerData
     const 
+      { answer, votes, percentage } = answerData,
       answerEl = document.querySelector(`.answer-${index}`),
       votesEl = document.querySelector(`.votes-${index}`),
       textEl = document.querySelector(`.text-${index}`),
       barEl = document.querySelector(`.bar-${index}`)
-
-      console.log(textEl)
 
     answerEl.innerText = `${answer}:`
     votesEl.innerText = `${votes} ${votes === 1 ? 'vote' : 'votes'}`

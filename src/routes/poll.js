@@ -2,8 +2,9 @@ const ObjectId = require('mongoose').Types.ObjectId
 const Poll = require('../models/poll')
 
 const poll = async (req, res) => {
-  const cookies = req.cookies.votes
-  const id = req.params.id
+  const 
+    cookies = req.cookies.votes,
+    id = req.params.id
 
   if (!ObjectId.isValid(id)) {
     res.render('pages/poll')
@@ -20,9 +21,9 @@ const poll = async (req, res) => {
 
     res.render('pages/poll', { poll })
   } else if (req.method === 'POST') {
-    const vote = `answers.${req.body.answer}.votes`
-
-    const updateCookies = cookies ? [...cookies, id] : [id]
+    const 
+      vote = `answers.${req.body.answer}.votes`,
+      updateCookies = cookies ? [...cookies, id] : [id]
 
     Poll.findOneAndUpdate(
       { _id: id },

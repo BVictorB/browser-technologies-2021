@@ -9,6 +9,7 @@ const
   app = express(),
   server = require('http').createServer(app),
   io = socket(server),
+  db = mongoose.connection,
   router = require('./src/router'),
   poll = require('./src/sockets/poll'),
   checkPolls = require('./src/utils/checkPolls')
@@ -17,8 +18,6 @@ mongoose.connect(process.env.DB_URL, {
   useUnifiedTopology: true,
 	useNewUrlParser: true
 })
-
-const db = mongoose.connection
 
 db.once('open', _ => {
   console.log('Connected to MongoDB!')
@@ -38,7 +37,7 @@ io.on('connection', socket => {
   socket.on('poll', data => poll(data, socket))
 })
 
-setInterval(checkPolls, 60000)
+setTimeout(checkPolls, 60000)
 
 webPush.setVapidDetails('mailto:replacethislater@test.com', process.env.PUBLIC_VAPID, process.env.PRIVATE_VAPID)
 
