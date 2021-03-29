@@ -7,7 +7,7 @@
 
 header, main, footer {
   width: 100%;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
   padding: 16px 24px;
 }
@@ -38,7 +38,7 @@ nav a {
 
 nav a:focus {
   outline: none;
-  border: 1px solid #177fce;
+  color: #177fce;
 }
 
 label {
@@ -111,28 +111,60 @@ button:hover, button:focus {
 }
 
 .poll-container {
-  display: flex;
-  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.poll-anchor {
+  text-decoration: none;
+  color: #062F4F;
+}
+
+.poll-anchor:hover, .poll-anchor:focus {
+  outline: none;
+  color: #177fce;
+}
+
+.poll-anchor span {
+  display: inline-block;
+  transition: transform 150ms ease-in-out;
+}
+
+.poll-anchor:hover span, .poll-anchor:focus span {
+  transform: translateX(6px);
 }
 
 .poll-block {
   display: block;
-  background: black;
+  text-decoration: none;
   border-radius: 16px;
-  width: 150px;
-  height: 60px;
-  text-align: center;
+  width: 100%;
   color: white;
-  margin: 12px;
+  margin: 12px 0;
+  padding: 6px 18px;
+  -webkit-transition: -webkit-transform .15s ease-in-out;
+  transition: -webkit-transform .15s ease-in-out;
+  transition: transform .15s ease-in-out;
+  transition: transform .15s ease-in-out, -webkit-transform .15s ease-in-out;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 24%);
+  background: #062F4F;
+  background-image: -webkit-linear-gradient(#062F4F,#094979);
+  background-image: linear-gradient(#062F4F,#094979);
+  background-attachment: fixed;
+}
+
+.poll-block:hover, .poll-block:focus {
+  outline: none;
+  -webkit-transform: scale(1.02) translateY(-5px);
+  transform: scale(1.02) translateY(-5px);
 }
 
 #jsCookieMessage {
   font-weight: 600;
   padding: 8px;
-  border-radius: 16px;
+  border-radius: 8px;
   color: white;
   margin: 16px auto 0;
-  width: 300px;
+  width: 100%;
   background: #062F4F;
 }
 
@@ -142,7 +174,7 @@ button:hover, button:focus {
 
 #copyInput {
   cursor: pointer;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   text-align: center;
 }
 

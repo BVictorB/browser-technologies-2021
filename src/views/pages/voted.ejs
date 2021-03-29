@@ -2,12 +2,18 @@
 <%- include('../partials/header'); %>
 
 <main>
-  <h1>Voted polls</h1>
+  <h1>Your voted polls</h1>
   <% if (locals.polls && locals.polls.length) { %>
     <section class="poll-container">
       <% polls.forEach(poll => { %>
         <a class="poll-block" href="/poll/<%= poll._id %>">
-          <%= poll.question %>
+          <h2><%= poll.question %></h2>
+          <p><%= poll.totalVotes %> <%= poll.totalVotes !== 1 ? 'votes' : 'vote' %></p>
+          <% if (poll.closed) { %>
+            <h3>This poll is closed</h3>
+          <% } else { %>
+            <h3>Closes <%= poll.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${poll.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= poll.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %></h3>
+          <% } %>
         </a>
       <% }) %>
     </section>

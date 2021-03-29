@@ -2,7 +2,7 @@
 <%- include('../partials/header'); %>
 
 <main>
-  <h1>Create poll</h1>
+  <h1><%= locals.data ? 'Edit saved poll' : 'Create poll' %></h1>
   <% if (locals.data) { %>
     <p>Save this url</p>
     <input id="copyInput" type="text" value="http://localhost:4000/saved/<%= data._id %>" readonly>
