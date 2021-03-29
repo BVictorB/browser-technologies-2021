@@ -66,7 +66,7 @@
     </section>
     <section class="form-column">
       <label>
-        Closing time
+        Closing time (hh:mm)
         <% if (locals.data) { %>
           <input type="time" name="time" value="<%= data.time %>" required>
         <% } else { %>
@@ -78,7 +78,7 @@
         <% } %>
       </label>
       <label>
-        Closing date
+        Closing date (dd/mm/yyyy)
         <input type="date" name="date" min="<%= new Date().toISOString().slice(0, 10) %>" value="<%= locals.data ? data.date : new Date().toISOString().slice(0, 10) %>" required>
       </label>
     </section>

@@ -16,6 +16,18 @@ header {
   text-align: center;
 }
 
+.logo {
+  text-decoration: none;
+}
+
+.logo:focus {
+  outline: none;
+}
+
+.logo:focus h1 {
+  color: #177fce;
+}
+
 h1 {
   color: #062F4F;
 }
@@ -36,7 +48,7 @@ nav a {
   border-radius: 6px;
 }
 
-nav a:focus {
+nav a:focus, nav a:hover {
   outline: none;
   color: #177fce;
 }
@@ -193,6 +205,7 @@ button:hover, button:focus {
 
 .removeAnswer {
   display: none;
+  cursor: pointer;
   position: absolute;
   bottom: 40px;
   left: 266px;
