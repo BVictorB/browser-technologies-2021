@@ -1,25 +1,25 @@
 <%- include('../partials/open'); %>
 <%- include('../partials/header'); %>
 
-  <main>
-    <h1>Polls</h1>
-    <% if (locals.polls && locals.polls.length) { %>
-      <section class="poll-container">
-        <% polls.forEach(poll => { %>
-          <a class="poll-block" href="/poll/<%= poll._id %>">
-            <h2><%= poll.question %></h2>
-            <p><%= poll.totalVotes %> <%= poll.totalVotes !== 1 ? 'votes' : 'vote' %></p>
-            <% if (poll.closed) { %>
-              <h3>This poll is closed</h3>
-            <% } else { %>
-              <h3>Closes <%= poll.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${poll.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= poll.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %></h3>
-            <% } %>
-          </a>
-        <% }) %>
-      </section>
-    <% } else { %>
-      <p>No polls</p>
-    <% } %>
-  </main>
+<main>
+  <h1>Polls</h1>
+  <% if (locals.polls && locals.polls.length) { %>
+    <section class="poll-container">
+      <% polls.forEach(poll => { %>
+        <a class="poll-block" href="/poll/<%= poll._id %>">
+          <h2><%= poll.question %></h2>
+          <p><%= poll.totalVotes %> <%= poll.totalVotes !== 1 ? 'votes' : 'vote' %></p>
+          <% if (poll.closed) { %>
+            <p>This poll is closed</p>
+          <% } else { %>
+            <p>Closes <%= poll.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${poll.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= poll.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %></p>
+          <% } %>
+        </a>
+      <% }) %>
+    </section>
+  <% } else { %>
+    <p>No polls</p>
+  <% } %>
+</main>
 
 <%- include('../partials/close'); %>

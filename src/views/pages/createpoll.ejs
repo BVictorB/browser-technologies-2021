@@ -19,76 +19,74 @@
       <button type="submit">Add inputs</button>
     </form>
   <% } %>
-  <form method="POST">
-    <label>
-      Question
-      <input type="text" name="question" value="<%= locals.data && data.question %>" required/>
-    </label>
-    <div id="answerContainer">
-      <% if (locals.data) { %>
-        <% data.answers.forEach((answer, index) => { %>
-          <label>
-            Answer <%= index + 1 %>
-            <span class="removeAnswer">x</span>
-            <input type="text" name="answers" value="<%= answer %>" required/>
-          </label>
-        <% }) %>
-      <% } else { %>
-        <% if (locals.answers) { %>
-          <% answers.forEach(answer => { %>
+  <form class="create-poll" method="POST">
+    <section class="create-poll-column">
+      <label>
+        Question
+        <input type="text" name="question" value="<%= locals.data && data.question %>" required/>
+      </label>
+      <div id="answerContainer">
+        <% if (locals.data) { %>
+          <% data.answers.forEach((answer, index) => { %>
             <label>
-              Answer <%= answer + 1 %>
+              Answer <%= index + 1 %>
               <span class="removeAnswer">x</span>
-              <input type="text" name="answers" required/>
+              <input type="text" name="answers" value="<%= answer %>" required/>
             </label>
           <% }) %>
         <% } else { %>
-          <label>
-            Answer 1
-            <span class="removeAnswer">x</span>
-            <input type="text" name="answers" required/>
-          </label>
-          <label>
-            Answer 2
-            <span class="removeAnswer">x</span>
-            <input type="text" name="answers" required/>
-          </label>
-          <label>
-            Answer 3
-            <span class="removeAnswer">x</span>
-            <input type="text" name="answers" required/>
-          </label>
+          <% if (locals.answers) { %>
+            <% answers.forEach(answer => { %>
+              <label>
+                Answer <%= answer + 1 %>
+                <span class="removeAnswer">x</span>
+                <input type="text" name="answers" required/>
+              </label>
+            <% }) %>
+          <% } else { %>
+            <label>
+              Answer 1
+              <span class="removeAnswer">x</span>
+              <input type="text" name="answers" required/>
+            </label>
+            <label>
+              Answer 2
+              <span class="removeAnswer">x</span>
+              <input type="text" name="answers" required/>
+            </label>
+            <label>
+              Answer 3
+              <span class="removeAnswer">x</span>
+              <input type="text" name="answers" required/>
+            </label>
+          <% } %>
         <% } %>
-      <% } %>
-    </div>
-    <button id="addAnswer" type="button">Add answer</button>
-    <label>
-      Closing time
-      <% if (locals.data) { %>
-        <input type="time" name="time" value="<%= data.time %>" required>
-      <% } else { %>
-        <% 
-          const time = new Date()
-          time.setHours(time.getHours() + 1)
-        %>
-        <input type="time" name="time" value="<%= time.toLocaleTimeString('en-GB').slice(0, -3) %>" required>
-      <% } %>
-    </label>
-    <label>
-      Closing date
-      <input type="date" name="date" min="<%= new Date().toISOString().slice(0, 10) %>" value="<%= locals.data ? data.date : new Date().toISOString().slice(0, 10) %>" required>
-    </label>
-    <button formaction="/createpoll" type="submit" name="<%= locals.data && 'savedID' %>" value="<%= locals.data && data._id %>">Submit</button>
+      </div>
+      <button id="addAnswer" type="button">Add answer</button>
+    </section>
+    <section class="form-column">
+      <label>
+        Closing time
+        <% if (locals.data) { %>
+          <input type="time" name="time" value="<%= data.time %>" required>
+        <% } else { %>
+          <% 
+            const time = new Date()
+            time.setHours(time.getHours() + 1)
+          %>
+          <input type="time" name="time" value="<%= time.toLocaleTimeString('en-GB').slice(0, -3) %>" required>
+        <% } %>
+      </label>
+      <label>
+        Closing date
+        <input type="date" name="date" min="<%= new Date().toISOString().slice(0, 10) %>" value="<%= locals.data ? data.date : new Date().toISOString().slice(0, 10) %>" required>
+      </label>
+    </section>
+    <button class="big-button" formaction="/createpoll" type="submit" name="<%= locals.data && 'savedID' %>" value="<%= locals.data && data._id %>">Create poll</button>
     <% if (!locals.data) { %>
-      <button formaction="/savepoll" type="submit">Save for later</button>
+      <button class="big-button" formaction="/savepoll" type="submit">Save poll for later</button>
     <% } %>
   </form>
-  <% if (locals.cookies && locals.cookies.length) { %>
-    <p>Saved polls:</p>
-    <% cookies.forEach(cookie => { %>
-      <a class="saved-poll" href="/saved/<%= cookie.id %>"><%= cookie.question %></a>
-    <% }) %>
-  <% } %>
 </main>
 
 <%- include('../partials/close'); %>

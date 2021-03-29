@@ -4,8 +4,7 @@ const
 
 const createpoll = (req, res) => {
   if (req.method === 'GET') {
-    const cookies = req.cookies.saved
-    res.render('pages/createpoll', { cookies })
+    res.render('pages/createpoll')
   } else if (req.method === 'POST') {
     const { date, time, question, answers, savedID } = req.body
     const timestamp = new Date(`${date} ${time}`).getTime()

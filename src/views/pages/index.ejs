@@ -11,9 +11,9 @@
           <h2><%= votedPoll.question %></h2>
           <p><%= votedPoll.totalVotes %> <%= votedPoll.totalVotes !== 1 ? 'votes' : 'vote' %></p>
           <% if (votedPoll.closed) { %>
-            <h3>This poll is closed</h3>
+            <p>This poll is closed</p>
           <% } else { %>
-            <h3>Closes <%= votedPoll.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${votedPoll.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= votedPoll.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %></h3>
+            <p>Closes <%= votedPoll.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${votedPoll.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= votedPoll.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %></p>
           <% } %>
         </a>
       <% }) %>
@@ -28,9 +28,9 @@
           <h2><%= recentPoll.question %></h2>
           <p><%= recentPoll.totalVotes %> <%= recentPoll.totalVotes !== 1 ? 'votes' : 'vote' %></p>
           <% if (recentPoll.closed) { %>
-            <h3>This poll is closed</h3>
+            <p>This poll is closed</p>
           <% } else { %>
-            <h3>Closes <%= recentPoll.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${recentPoll.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= recentPoll.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %></h3>
+            <p>Closes <%= recentPoll.closingtime.toDateString() === new Date().toDateString() ? 'today' : `on ${recentPoll.closingtime.toLocaleDateString('en-GB', { weekday: 'long' })}` %> at <%= recentPoll.closingtime.toLocaleTimeString('en-GB').slice(0, -3)  %></p>
           <% } %>
         </a>
       <% }) %>

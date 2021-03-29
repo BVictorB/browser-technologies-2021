@@ -54,7 +54,7 @@ label:focus-within {
 }
 
 input[type="text"], input[type="date"], input[type="time"], input[type="number"] {
-  width: 200px;
+  width: 280px;
   border: 2px solid black;
   border-radius: 8px;
   padding: 8px 12px;
@@ -79,7 +79,7 @@ button {
   font-size: 18px;
   border-radius: 8px;
   height: 40px;
-  width: 200px;
+  width: 280px;
   background: #062F4F;
   color: white;
   font-weight: 600;
@@ -140,7 +140,7 @@ button:hover, button:focus {
   width: 100%;
   color: white;
   margin: 12px 0;
-  padding: 6px 18px;
+  padding: 6px 18px 12px;
   -webkit-transition: -webkit-transform .15s ease-in-out;
   transition: -webkit-transform .15s ease-in-out;
   transition: transform .15s ease-in-out;
@@ -195,7 +195,7 @@ button:hover, button:focus {
   display: none;
   position: absolute;
   bottom: 40px;
-  left: 184px;
+  left: 266px;
   font-weight: 600;
   font-size: 24px;
 }
@@ -317,4 +317,19 @@ button:hover, button:focus {
   color: #062F4F;
   border: 2px solid #062F4F;
   outline: none;
+}
+
+.create-poll {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.create-poll-column {
+  margin-right: 16px;
+  width: 50%;
+}
+
+.big-button {
+  margin: 8px 0;
+  width: 100%;
 }

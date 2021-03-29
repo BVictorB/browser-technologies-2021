@@ -1,0 +1,17 @@
+<%- include('../partials/open'); %>
+<%- include('../partials/header'); %>
+
+<main>
+  <h1>Your saved polls</h1>
+  <% if (locals.cookies && locals.cookies.length) { %>
+    <p>Saved polls:</p>
+    <% cookies.forEach(cookie => { %>
+      <a class="saved-poll" href="/saved/<%= cookie.id %>"><%= cookie.question %></a>
+    <% }) %>
+  <% } else { %>
+    <p>You have no saved polls.</p>  
+  <% } %>
+
+</main>
+
+<%- include('../partials/close'); %>

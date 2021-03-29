@@ -4,6 +4,7 @@ const
   home = require('./routes/home'),
   createpoll = require('./routes/createpoll'),
   savepoll = require('./routes/savepoll'),
+  savedpolls = require('./routes/savedpolls'),
   saved = require('./routes/saved'),
   poll = require('./routes/poll'),
   result = require('./routes/result'),
@@ -19,6 +20,7 @@ router
   .post('/savepoll', savepoll)
   .get('/saved/:id', saved)
   .post('/saved/:id', saved)
+  .get('/savedpolls', savedpolls)
   .get('/poll/:id', poll)
   .post('/poll/:id', poll)
   .get('/result/:id', result)
