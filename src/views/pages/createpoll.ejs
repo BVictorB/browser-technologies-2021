@@ -29,6 +29,7 @@
         <% data.answers.forEach((answer, index) => { %>
           <label>
             Answer <%= index + 1 %>
+            <span class="removeAnswer">x</span>
             <input type="text" name="answers" value="<%= answer %>" required/>
           </label>
         <% }) %>
@@ -37,25 +38,30 @@
           <% answers.forEach(answer => { %>
             <label>
               Answer <%= answer + 1 %>
+              <span class="removeAnswer">x</span>
               <input type="text" name="answers" required/>
             </label>
           <% }) %>
         <% } else { %>
           <label>
             Answer 1
+            <span class="removeAnswer">x</span>
             <input type="text" name="answers" required/>
           </label>
           <label>
             Answer 2
+            <span class="removeAnswer">x</span>
             <input type="text" name="answers" required/>
           </label>
           <label>
             Answer 3
+            <span class="removeAnswer">x</span>
             <input type="text" name="answers" required/>
           </label>
         <% } %>
       <% } %>
     </div>
+    <button id="addAnswer" type="button">Add answer</button>
     <label>
       Closing time
       <% if (locals.data) { %>
