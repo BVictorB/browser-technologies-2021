@@ -13,7 +13,7 @@ const saved = async (req, res) => {
   if (req.method === 'GET') {
     const data = await SavedPoll.findOne({ _id: id })
     const cookies = req.cookies.saved
-    res.render('pages/createpoll', { data, cookies })
+    res.render('pages/createpoll', { data, cookies, url: process.env.URL })
   } else if (req.method === 'POST') {
     const cookies = req.cookies.saved
     const updateCookies = cookies.filter(cookie => cookie.id !== id)

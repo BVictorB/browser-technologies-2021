@@ -6,7 +6,6 @@ self.addEventListener('push', e => {
     data: {
       url: url
     }
-    // icon: data.icon,
   })
 })
 

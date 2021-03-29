@@ -1,4 +1,4 @@
-const socket = io.connect('http://localhost:4000')
+const socket = io.connect(window.location.origin)
 const id = window.location.pathname.split('/').pop()
 
 socket.on('connect', _ => {

@@ -5,7 +5,7 @@
   <h1><%= locals.data ? 'Edit saved poll' : 'Create poll' %></h1>
   <% if (locals.data) { %>
     <p>Save this url</p>
-    <input id="copyInput" type="text" value="http://localhost:4000/saved/<%= data._id %>" readonly>
+    <input id="copyInput" type="text" value="<%= url %>saved/<%= data._id %>" readonly>
     <script src="/scripts/copyToClipboard.js"></script>
     <form action="/saved/<%= data._id %>" method="POST">
       <button type="submit">Remove saved poll</button>

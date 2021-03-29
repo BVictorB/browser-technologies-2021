@@ -20,7 +20,8 @@ const result = async (req, res) => {
     answers: results,
     totalVotes,
     closingtime,
-    closed
+    closed,
+    url: process.env.URL
   }
 
   res.render('pages/result', { data, publicVapidKey })

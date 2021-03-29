@@ -27,7 +27,7 @@
       </form>
     <% } %>
     <p>Share this poll</p>
-    <input id="copyInput" type="text" value="http://localhost:4000/poll/<%= data._id %>" readonly>
+    <input id="copyInput" type="text" value="<%= data.url %>poll/<%= data._id %>" readonly>
     <% if (!data.closed) { %>
       <p id="subscribeText">Get notifications about this poll</p>
       <button id="subscribeButton">Subscribe</button>
