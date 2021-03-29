@@ -12,7 +12,8 @@ const
   db = mongoose.connection,
   router = require('./src/router'),
   poll = require('./src/sockets/poll'),
-  checkPolls = require('./src/utils/checkPolls')
+  checkPolls = require('./src/utils/checkPolls'),
+  port = 4000
 
 mongoose.connect(process.env.DB_URL, {
   useUnifiedTopology: true,
@@ -31,7 +32,7 @@ app
   .use(cookieParser())
   .use(express.static('src/static'))
 
-server.listen(4000)
+server.listen(process.env.PORT || port)
 
 io.on('connection', socket => {
   socket.on('poll', data => poll(data, socket))

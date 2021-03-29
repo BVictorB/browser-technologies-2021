@@ -1,12 +1,14 @@
-document.querySelector('#refreshButton').remove()
-document.querySelector('#liveData').style.display = 'inline-block'
-
 const socket = io.connect('http://localhost:4000')
 const id = window.location.pathname.split('/').pop()
 
+socket.on('connect', _ => {
+  document.querySelector('#refreshButton').remove()
+  document.querySelector('#liveData').style.display = 'inline-block'
+})
+
 socket.emit('poll', { id })
 
-socket.on('poll', (data) => {
+socket.on('poll', data => {
   if (data.closed) {
     document.querySelector('#liveData').remove()
     document.querySelector('#closeText').innerText = 'This poll is closed'

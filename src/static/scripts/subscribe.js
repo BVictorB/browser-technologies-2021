@@ -21,6 +21,12 @@ const urlBase64ToUint8Array = base64String => {
 
 const subscribe = async _ => {
   const register = await navigator.serviceWorker.register('/sw.js')
+
+  if (!register.pushManager) {
+    btn.style.display = 'none'
+    text.style.display = 'none'
+  }
+
   const subscription = await register.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(vapidKey)
@@ -41,7 +47,7 @@ const subscribe = async _ => {
   })
 }
 
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator && 'PushManager' in window) {
   btn.style.display = 'block'
   text.style.display = 'block'
   if (!btn.classList.contains('active-button')) {
