@@ -17,7 +17,7 @@ header {
 }
 
 h1 {
-  color: #e85d04;
+  color: #062F4F;
 }
 
 nav ul {
@@ -38,7 +38,7 @@ nav a {
 
 nav a:focus {
   outline: none;
-  border: 1px solid #e85d04;
+  border: 1px solid #177fce;
 }
 
 label {
@@ -49,23 +49,23 @@ label {
 }
 
 label:focus-within {
-  color: #e85d04;
+  color: #177fce;
 }
 
-input[type="text"], input[type="date"], input[type="time"] {
+input[type="text"], input[type="date"], input[type="time"], input[type="number"] {
   width: 200px;
   border: 2px solid black;
   border-radius: 8px;
   padding: 8px 12px;
   display: block;
   margin-top: 4px;
-  caret-color: #e85d04;
+  caret-color: #177fce;
   transition: all 200ms ease-in-out;
 }
 
-input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus {
+input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, input[type="number"]:focus {
   outline: none;
-  border: 2px solid #e85d04;
+  border: 2px solid #177fce;
 }
 
 input[type="radio"] {
@@ -79,25 +79,25 @@ button {
   border-radius: 8px;
   height: 40px;
   width: 200px;
-  background: #e85d04;
+  background: #062F4F;
   color: white;
   font-weight: 600;
-  border: 2px solid #e85d04;
+  border: 2px solid #062F4F;
   transition: all 200ms ease-in-out;
   margin: 16px 0;
 }
 
 button:hover, button:focus {
   background: white;
-  color: #e85d04;
-  border: 2px solid #e85d04;
+  color: #062F4F;
+  border: 2px solid #062F4F;
   outline: none;
 }
 
 .active-button {
   background: white;
-  color: #e85d04;
-  border: 2px solid #e85d04;
+  color: #062F4F;
+  border: 2px solid #062F4F;
   outline: none;
 }
 
@@ -132,7 +132,7 @@ button:hover, button:focus {
   color: white;
   margin: 16px auto 0;
   width: 300px;
-  background: #e85d04;
+  background: #062F4F;
 }
 
 #refreshButton {
@@ -191,7 +191,7 @@ button:hover, button:focus {
   left: -46px;
   width: 100px;
   height: 46px;
-  background: #e85d04;
+  background: #062F4F;
   color: white;
   font-size: 16px;
   font-weight: 500;
@@ -211,7 +211,7 @@ button:hover, button:focus {
   top: -16px;
   left: 0;
   border: solid 10px transparent;
-  border-top-color: #e85d04;
+  border-top-color: #062F4F;
   pointer-events: none;
   transition: all 200ms ease-in-out;
   animation: displayTooltip 4s ease-in-out;
@@ -239,15 +239,36 @@ button:hover, button:focus {
 
 .poll-bar {
   width: 100%;
-  height: 24px;
+  height: 32px;
   border: 2px solid black;
   border-radius: 8px;
 }
 
 .poll-bar rect {
+  fill: #062F4F;
   transition: width 200ms ease-in-out;
 }
 
 .poll-bar text {
-  text-align: right;
+  font-weight: 600;
+}
+
+.saved-poll {
+  margin: 16px 0;
+  font-size: 18px;
+  border-radius: 8px;
+  display: block;
+  padding: 8px 14px;
+  background: #062F4F;
+  color: white;
+  font-weight: 600;
+  border: 2px solid #062F4F;
+  transition: all 200ms ease-in-out;
+}
+
+.saved-poll:hover, .saved-poll:focus {
+  background: white;
+  color: #062F4F;
+  border: 2px solid #062F4F;
+  outline: none;
 }

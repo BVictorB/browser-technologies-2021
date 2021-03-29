@@ -10,31 +10,67 @@
     <form action="/saved/<%= data._id %>" method="POST">
       <button type="submit">Remove saved poll</button>
     </form>
+  <% } else { %>
+    <form id="addInputs" action="/addanswers" method="POST">
+      <label>
+        Amount of answers
+        <input type="number" name="answers" value="<%= locals.answers ? answers.length : '3' %>" required/>
+      </label>
+      <button type="submit">Add inputs</button>
+    </form>
   <% } %>
   <form method="POST">
     <label>
       Question
       <input type="text" name="question" value="<%= locals.data && data.question %>" required/>
     </label>
-    <label>
-      Answer 1
-      <input type="text" name="answers" value="<%= locals.data && data.answers[0] %>" required/>
-    </label>
-    <label>
-      Answer 2
-      <input type="text" name="answers" value="<%= locals.data && data.answers[1] %>" required/>
-    </label>
-    <label>
-      Answer 3
-      <input type="text" name="answers" value="<%= locals.data && data.answers[2] %>" required/>
-    </label>
+    <div id="answerContainer">
+      <% if (locals.data) { %>
+        <% data.answers.forEach((answer, index) => { %>
+          <label>
+            Answer <%= index + 1 %>
+            <input type="text" name="answers" value="<%= answer %>" required/>
+          </label>
+        <% }) %>
+      <% } else { %>
+        <% if (locals.answers) { %>
+          <% answers.forEach(answer => { %>
+            <label>
+              Answer <%= answer + 1 %>
+              <input type="text" name="answers" required/>
+            </label>
+          <% }) %>
+        <% } else { %>
+          <label>
+            Answer 1
+            <input type="text" name="answers" required/>
+          </label>
+          <label>
+            Answer 2
+            <input type="text" name="answers" required/>
+          </label>
+          <label>
+            Answer 3
+            <input type="text" name="answers" required/>
+          </label>
+        <% } %>
+      <% } %>
+    </div>
     <label>
       Closing time
-      <input type="time" name="time" value="<%= locals.data && data.time %>" required>
+      <% if (locals.data) { %>
+        <input type="time" name="time" value="<%= data.time %>" required>
+      <% } else { %>
+        <% 
+          const time = new Date()
+          time.setHours(time.getHours() + 1)
+        %>
+        <input type="time" name="time" value="<%= time.toLocaleTimeString('en-GB').slice(0, -3) %>" required>
+      <% } %>
     </label>
     <label>
       Closing date
-      <input type="date" name="date" value="<%= locals.data ? data.date : new Date().toISOString().slice(0, 10)  %>" required>
+      <input type="date" name="date" min="<%= new Date().toISOString().slice(0, 10) %>" value="<%= locals.data ? data.date : new Date().toISOString().slice(0, 10) %>" required>
     </label>
     <button formaction="/createpoll" type="submit" name="<%= locals.data && 'savedID' %>" value="<%= locals.data && data._id %>">Submit</button>
     <% if (!locals.data) { %>
@@ -44,7 +80,7 @@
   <% if (locals.cookies && locals.cookies.length) { %>
     <p>Saved polls:</p>
     <% cookies.forEach(cookie => { %>
-      <a href="/saved/<%= cookie.id %>"><%= cookie.question %></a>
+      <a class="saved-poll" href="/saved/<%= cookie.id %>"><%= cookie.question %></a>
     <% }) %>
   <% } %>
 </main>

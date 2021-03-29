@@ -9,7 +9,8 @@ const
   result = require('./routes/result'),
   polls = require('./routes/polls'),
   voted = require('./routes/voted'),
-  subscribe = require('./routes/subscribe')
+  subscribe = require('./routes/subscribe'),
+  addanswers = require('./routes/addanswers')
 
 router
   .get('/', home)
@@ -24,5 +25,6 @@ router
   .get('/polls', polls)
   .get('/voted', voted)
   .post('/subscribe', subscribe)
+  .post('/addanswers', addanswers)
 
 module.exports = router

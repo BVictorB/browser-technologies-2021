@@ -16,8 +16,8 @@
           <p class="<%= `votes-${index}` %>"><%= answer.votes %> <%= answer.votes === 1 ? 'vote' : 'votes' %></p>
         </div> 
         <svg class="poll-bar">
-          <rect class="<%= `bar-${index}` %>" width="<%= answer.percentage %>%" height="24" fill="black" />
-          <text class="<%= `text-${index}` %>" text-anchor="end" x="<%= answer.percentage - 1 %>%" y="16" fill="white"><%= answer.percentage %>%</text>
+          <rect class="<%= `bar-${index}` %>" width="<%= answer.percentage %>%" height="32" fill="black" />
+          <text class="<%= `text-${index}` %>" text-anchor="end" x="<%= answer.percentage - 1 %>%" y="19" fill="white"><%= answer.percentage %>%</text>
         </svg>
       <% }) %>
     </section>
