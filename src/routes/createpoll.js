@@ -4,7 +4,11 @@ const
 
 const createpoll = (req, res) => {
   if (req.method === 'GET') {
-    res.render('pages/createpoll')
+    const 
+      today = new Date().toISOString().slice(0, 10),
+      week = new Date(new Date().getTime() + (60*60*24*7*1000)).toISOString().slice(0, 10)
+
+    res.render('pages/createpoll', { today, week })
   } else if (req.method === 'POST') {
     const { date, time, question, answers, savedID } = req.body
     const timestamp = new Date(`${date} ${time}`).getTime()

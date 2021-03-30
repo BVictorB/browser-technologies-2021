@@ -19,11 +19,12 @@
       <button type="submit">Add inputs</button>
     </form>
   <% } %>
-  <form class="create-poll" method="POST">
+  <form class="create-poll" id="createPoll" method="POST">
     <section class="create-poll-column">
       <label>
         Question
-        <input type="text" name="question" value="<%= locals.data && data.question %>" required/>
+        <input class="no-error" type="text" name="question" value="<%= locals.data && data.question %>" required/>
+        <p class="no-error-message"></p>
       </label>
       <div id="answerContainer">
         <% if (locals.data) { %>
@@ -31,7 +32,8 @@
             <label>
               Answer <%= index + 1 %>
               <span class="removeAnswer">x</span>
-              <input type="text" name="answers" value="<%= answer %>" required/>
+              <input class="no-error" type="text" name="answers" value="<%= answer %>" required/>
+              <p class="no-error-message"></p>
             </label>
           <% }) %>
         <% } else { %>
@@ -40,24 +42,28 @@
               <label>
                 Answer <%= answer + 1 %>
                 <span class="removeAnswer">x</span>
-                <input type="text" name="answers" required/>
+                <input class="no-error" type="text" name="answers" required/>
+                <p class="no-error-message"></p>
               </label>
             <% }) %>
           <% } else { %>
             <label>
               Answer 1
               <span class="removeAnswer">x</span>
-              <input type="text" name="answers" required/>
+              <input class="no-error" type="text" name="answers" required/>
+              <p class="no-error-message"></p>
             </label>
             <label>
               Answer 2
               <span class="removeAnswer">x</span>
-              <input type="text" name="answers" required/>
+              <input class="no-error" type="text" name="answers" required/>
+              <p class="no-error-message"></p>
             </label>
             <label>
               Answer 3
               <span class="removeAnswer">x</span>
-              <input type="text" name="answers" required/>
+              <input class="no-error" type="text" name="answers" required/>
+              <p class="no-error-message"></p>
             </label>
           <% } %>
         <% } %>
@@ -68,25 +74,53 @@
       <label>
         Closing time (hh:mm)
         <% if (locals.data) { %>
-          <input type="time" name="time" value="<%= data.time %>" required>
+          <input class="no-error" type="time" name="time" value="<%= data.time %>" required>
         <% } else { %>
           <% 
             const time = new Date()
             time.setHours(time.getHours() + 1)
           %>
-          <input type="time" name="time" value="<%= time.toLocaleTimeString('en-GB').slice(0, -3) %>" required>
+          <input 
+            class="no-error"
+            type="time" 
+            name="time" 
+            value="<%= time.toLocaleTimeString('en-GB').slice(0, -3) %>"
+            pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
+            title="hh:mm"
+            required
+          >
         <% } %>
+        <p class="no-error-message"></p>
       </label>
       <label>
         Closing date (dd/mm/yyyy)
-        <input type="date" name="date" min="<%= new Date().toISOString().slice(0, 10) %>" value="<%= locals.data ? data.date : new Date().toISOString().slice(0, 10) %>" required>
+        <input 
+          class="no-error"
+          type="date" 
+          name="date" 
+          min="<%= today && today %>" 
+          max="<%= week && week %>"
+          pattern="^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$"
+          title="dd/mm/yyyy"
+          required
+        >
+        <p class="no-error-message"></p>
       </label>
     </section>
-    <button class="big-button" formaction="/createpoll" type="submit" name="<%= locals.data && 'savedID' %>" value="<%= locals.data && data._id %>">Create poll</button>
+    <button 
+      class="big-button" 
+      formaction="/createpoll" 
+      type="submit" 
+      name="<%= locals.data && 'savedID' %>" 
+      value="<%= locals.data && data._id %>"
+    >
+      Create poll
+    </button>
     <% if (!locals.data) { %>
       <button class="big-button" formaction="/savepoll" type="submit">Save poll for later</button>
     <% } %>
   </form>
+  <script src="/scripts/validateForm.js"></script>
 </main>
 
 <%- include('../partials/close'); %>

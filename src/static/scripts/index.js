@@ -34,15 +34,19 @@ if (addAnswer) {
       inputAmount = answerContainer.querySelectorAll('label').length,
       label = document.createElement('label'),
       input = document.createElement('input'),
+      p = document.createElement('p'),
       closeButton = document.createElement('span')
 
     closeButton.innerHTML = 'x'
     closeButton.classList.add('removeAnswer')
     input.type = 'text'
     input.name = 'answers'
+    input.classList.add('no-error')
+    p.classList.add('no-error-message')
     label.innerHTML = `Answer ${inputAmount + 1}`
     label.appendChild(closeButton)
     label.appendChild(input)
+    label.appendChild(p)
     answerContainer.appendChild(label)
     addRemoveButtonListeners()
   })
