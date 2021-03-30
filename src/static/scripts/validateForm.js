@@ -76,5 +76,5 @@ form.addEventListener('submit', e => {
     }
   })
 
-  !errors && e.submit()
+  !errors && form.submit()
 })
