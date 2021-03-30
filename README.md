@@ -29,7 +29,7 @@ Coming soon...
 
 - Clone this repo
 ```
-git clone https://github.com/BVictorB/browser-technologies-2021.git .
+git clone https://github.com/BVictorB/polld.git .
 ```
 - Install all NPM packages
 ```
