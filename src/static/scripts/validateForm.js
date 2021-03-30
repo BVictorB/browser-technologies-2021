@@ -76,5 +76,9 @@ form.addEventListener('submit', e => {
     }
   })
 
-  !errors && form.submit()
+
+  if (!errors) {
+    form.setAttribute('action', e.submitter.getAttribute('formaction'))
+    form.submit()
+  }
 })
