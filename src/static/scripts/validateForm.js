@@ -24,9 +24,9 @@ const validateForm = (e) => {
   const checkDate = () => {
     console.log(target.value)
     if (!target.value.match(dateValidator)) {
-      const err = 'Please fill in the date using format dd/mm/yyyy';
+      const err = 'Please fill in the date using format dd/mm/yyyy'
       createError(err)
-    } else if (target.value.length == 0) {
+    } else if (target.value.length === 0) {
       createError(defaultErr)
     } else {
       removeError()
@@ -35,9 +35,9 @@ const validateForm = (e) => {
 
   const checkTime = () => {
     if (!target.value.match(timeValidator)) {
-      const err = 'Please fill in the time using format hh:mm';
+      const err = 'Please fill in the time using format hh:mm'
       createError(err)
-    } else if (target.value.length == 0) {
+    } else if (target.value.length === 0) {
       createError(defaultErr)
     } else {
       removeError()
@@ -45,7 +45,7 @@ const validateForm = (e) => {
   }
 
   const checkDefault = () => {
-    if (target.value.length == 0) {
+    if (target.value.length === 0) {
       createError(defaultErr)
     } else {
       removeError()
@@ -75,7 +75,6 @@ form.addEventListener('submit', e => {
       errors = true
     }
   })
-
 
   if (!errors) {
     form.setAttribute('action', e.submitter.getAttribute('formaction'))
